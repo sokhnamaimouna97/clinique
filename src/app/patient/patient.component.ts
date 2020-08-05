@@ -20,6 +20,7 @@ export class PatientComponent implements OnInit {
   patient:Array<any>=[];
   isAdd=true;
   isedit=false;
+  age;
 
   constructor(private formBuilder:FormBuilder) { }
 
@@ -30,6 +31,7 @@ export class PatientComponent implements OnInit {
       code:['',Validators.required],
       telephone:['',Validators.required],
       adresse:['',Validators.required],
+
 
     })
     this.isAdd=true;
