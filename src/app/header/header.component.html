@@ -1,0 +1,23 @@
+<p></p>
+<div class="container">
+<nav class="navbar navbar-default">
+ <div class="navbar-header">
+      <a class="navbar-brand">Gestion D'une Clinique</a>
+    </div>
+    <ul *ngIf="user" class="nav navbar-nav">
+      <li class="active"><a routerLink="/authentification">Accueil</a></li>
+      <li class="dropdown">
+      <li><a routerLink="/employe">Employés</a></li>
+      <li><a routerLink="/patient">Patients</a></li>
+      <li><a routerLink="/fichepatient">Fiche Patients</a></li>
+      <li><a routerLink="/rendez_vous"> Rendez-Vous</a></li>
+      <li><a routerLink="/chambre">Chambres</a></li>
+      <li><a routerLink="/paiement">Paiement</a></li>
+    </ul>
+    <div class="jumbotron bg-info">
+      <h1 class="display-4">Gestion Clinique</h1>
+    </div>
+    <router-outlet></router-outlet>
+</nav>
+</div>
+

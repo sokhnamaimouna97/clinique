@@ -1,0 +1,111 @@
+<p></p>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading">Ajouter un rendz-vous</div>
+      <div class="panel-boby">
+        <form [formGroup]="contactForm" (ngSubmit)="oneSubmit()">
+          <div class="form-group">
+          <label for="date">DATE DE DEBUT:</label>
+          <input type="date" formControlName="datedebut" [ngClass]="{'is-valid':submitted && f.datedebut.errors}" class="form-control" placeholder="la date de debut" id="date" name="date"
+          [value]="f.datedebut.value"
+          >
+          <div *ngIf="submitted && f.datedebut.errors">
+            <div *ngIf="f.datedebut.errors.required">
+             <p>la date est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="date">DATE DE FIN:</label>
+            <input type="date" formControlName="datefin" [ngClass]="{'is-valid':submitted && f.datefin.errors}" class="form-control" placeholder="la date de fin" id="date" name="date"
+            [value]="f.datefin.value"
+            >
+            <div *ngIf="submitted && f.datefin.errors">
+              <div *ngIf="f.datefin.errors.required">
+               <p>la date de fin est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="numeropatient">PATIENT:</label>
+              <select formControlName="numeropatient" [ngClass]="{'is-valid':submitted && f.numeropatient.errors}" class="form-control" id="numero" name="numeropatient"
+              [value]="f.numeropatient.value"
+              >
+                <option value="">select patient</option>
+                <option value="Mamadou Ndiaye">Mamadou Ndiaye</option>
+                <option value="Sokhna thiam">Sokhna thiam</option>
+                <option value="Aboubacrine Haidara">Aboubacrine Haidara</option>
+                <option value="Awa Sall">Awa Sall</option>
+              </select>
+              <div *ngIf="submitted && f.numeropatient.errors">
+                <div *ngIf="f.numeropatient.errors.required">
+                 <p>le numero de patient est obligatoire</p>
+                </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <label for="numeroemploye">EMPLOYE:</label>
+                <select formControlName="numeroemploye" [ngClass]="{'is-valid':submitted && f.numeroemploye.errors}" class="form-control" id="numero" name="numeroemploye"
+                [value]="f.numeroemploye.value"
+                >
+                  <option value="">select employe</option>
+                  <option value="Medecin">medecin</option>
+                  <option value="Infirmiere">infirmiere</option>
+                  <option value="Administrateur">Administrateur</option>
+                  <option value="Secretaire">secretaire</option>
+                </select>
+                <div *ngIf="submitted && f.numeroemploye.errors">
+                  <div *ngIf="f.numeroemploye.errors.required">
+                   <p>le numero est obligatoire</p>
+                  </div>
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary" *ngIf="isAdd" (click)="clickAdd()">ajouter</button>
+                <button type="submit" class="btn btn-primary" *ngIf="isedit" (click)="clickEdit()">editer</button>
+      </form>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="listesFiches">
+      <table class="table">
+        <thead>
+          <tr>
+             <th scope="col">DATE DE DÉBUT</th>
+            <th scope="col">DATE DE FIN</th>
+            <th scope="col">NuméroPatient</th>
+            <th scope="col">NuméroEmploye</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listesFiches">
+            <td>{{item.datedebut}}</td>
+            <td>{{item.datefin}}</td>
+            <td>{{item.numeropatient}}</td>
+            <td>{{item.numeroemploye}}</td>
+             <td>
+              <button class="btn btn-outline-primary" (click)="update(item)">Modifier</button>
+              <button class="btn btn-outline-danger" (click)="delete(item)">Supprimer</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+

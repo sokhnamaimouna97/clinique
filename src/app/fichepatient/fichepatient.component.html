@@ -1,0 +1,83 @@
+<p></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading">Fiche Patient</div>
+      <div class="panel-boby">
+        <form [formGroup]="contactForm" (ngSubmit)="oneSubmit()">
+          <div class="form-group">
+          <label for="date">DATE DE CONSULTATION:</label>
+          <input type="date" formControlName="dateconsultation" [ngClass]="{'is-valid':submitted && f.date.errors}" class="form-control" placeholder="la date de consultation" id="date" name="date"
+          [value]="f.dateconsultation.value"
+          >
+          <div *ngIf="submitted && f.date.errors">
+            <div *ngIf="f.date.errors.required">
+             <p>la date est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="number">NUMÉRO:</label>
+            <div *ngIf="isAdd">
+              <input type="number" formControlName="numero" [ngClass]="{'is-valid':submitted && f.numero.errors}" class="form-control" placeholder="Votre numero" id="numero" name="numero"
+            [value]="f.code.value"
+            >
+            </div>
+            <div *ngIf="isedit">
+              <input type="number"  readonly formControlName="numero" [ngClass]="{'is-valid':submitted && f.numero.errors}" class="form-control" placeholder="Votre numero" id="numero" name="numero"
+            [value]="f.code.value"
+            >
+            </div>
+            <div *ngIf="submitted && f.id.errors">
+              <div *ngIf="f.id.errors.required">
+               <p>le numéro de fiche est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="information">INFORMATION RELEVÉE:</label>
+              <input type="text" formControlName="information" [ngClass]="{'is-valid':submitted && f.information.errors}" class="form-control" placeholder="les informations relevées" id="id" name="id"
+              [value]="f.information.value"
+              >
+              <div *ngIf="submitted && f.information.errors">
+                <div *ngIf="f.information.errors.required">
+                 <p>les informations relevées  sont obligatoires</p>
+                </div>
+              </div>
+              </div>
+              <button type="submit" class="btn btn-primary" *ngIf="isAdd" (click)="clickAdd()">ajouter</button>
+              <button type="submit" class="btn btn-primary" *ngIf="isedit" (click)="clickEdit()">editer</button>
+            </form>
+         </div>
+       </div>
+      </div>
+      <div class="col-md-6">
+      <div *ngIf="listesFiches">
+      <table class="table">
+        <thead>
+          <tr>
+             <th scope="col">DATE CONSULTATION</th>
+            <th scope="col">NUMÉRO</th>
+            <th scope="col">INFORMATION RELEVÉE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listesFiches">
+            <td>{{item.dateconsultation}}</td>
+            <td>{{item.numero}}</td>
+            <td>{{item.information}}</td>
+            <td>
+              <button class="btn btn-outline-primary" (click)="update(item)">Modifier</button>
+              <button class="btn btn-outline-danger" (click)="delete(item)">Supprimer</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     </div>
+    </div>
+    </div>
+
+

@@ -1,0 +1,35 @@
+<p></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading"> Authentifier</div>
+      <div class="panel-boby">
+        <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+          <label for="username">USERNAME:</label>
+          <input type="text" formControlName="username" [ngClass]="{'is-valid':submitted && f.username.errors}" class="form-control" placeholder="username">
+          <div *ngIf="submitted && f.username.errors">
+            <div *ngIf="f.username.errors.required">
+             <p>username est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="password">PASSWORD:</label>
+            <input type="password" formControlName="password" [ngClass]="{'is-valid':submitted && f.password.errors}" class="form-control" placeholder="password">
+            <div *ngIf="submitted && f.password.errors">
+              <div *ngIf="f.password.errors.required">
+               <p>password est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
+

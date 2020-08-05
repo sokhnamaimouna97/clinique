@@ -1,0 +1,79 @@
+
+<p></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading">Chambre</div>
+      <div class="panel-boby">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+          <label for="nom">NOM:</label>
+          <input type="text" formControlName="nom" [ngClass]="{'is-valid':submitted && f.nom.errors}" class="form-control" placeholder="le nom" id="nom" name="nom"
+          [value]="f.nom.value"
+          >
+          <div *ngIf="submitted && f.nom.errors">
+            <div *ngIf="f.nom.errors.required">
+             <p>la nom est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="number">NUMÉRO:</label>
+            <div *ngIf="isAdd">
+              <input type="number" formControlName="numero" [ngClass]="{'is-valid':submitted && f.numero.errors}" class="form-control" placeholder="Votre numero" id="numero" name="numero"
+            [value]="f.numero.value"
+            >
+            </div>
+            <div *ngIf="isedit">
+              <input type="number"  readonly formControlName="numero" [ngClass]="{'is-valid':submitted && f.numero.errors}" class="form-control" placeholder="Votre numero" id="numero" name="numero"
+            [value]="f.numero.value"
+            >
+            </div>
+            <div *ngIf="submitted && f.numero.errors">
+              <div *ngIf="f.numero.errors.required">
+               <p>le numéro est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary" *ngIf="isAdd" (click)="clickAdd()">ajouter</button>
+            <button type="submit" class="btn btn-primary" *ngIf="isedit" (click)="clickEdit()">editer</button>
+ </form>
+</div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="listesFiches">
+      <table class="table">
+        <thead>
+          <tr>
+             <th scope="col">NOM</th>
+            <th scope="col">NUMÉRO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listesFiches">
+            <td>{{item.nom}}</td>
+            <td>{{item.numero}}</td>
+            <td>
+              <button class="btn btn-outline-primary" (click)="update(item)">Modifier</button>
+          <button class="btn btn-outline-danger" (click)="delete(item)">Supprimer</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

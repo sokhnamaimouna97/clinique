@@ -1,0 +1,77 @@
+
+<p></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading ">Ajouter Paiement</div>
+      <div class="panel-boby">
+        <form [formGroup]="contactForm" (ngSubmit)="oneSubmit()">
+          <div class="form-group">
+          <label for="type">TYPE:</label>
+          <input type="text" formControlName="type" [ngClass]="{'is-valid':submitted && f.type.errors}" class="form-control" placeholder="le type" id="type" name="type">
+          <div *ngIf="submitted && f.type.errors">
+            <div *ngIf="f.type.errors.required">
+             <p>la type est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="number">SOMME:</label>
+            <input type="number" formControlName="somme" [ngClass]="{'is-valid':submitted && f.somme.errors}" class="form-control" placeholder="Votre somme" id="somme" name="somme">
+            <div *ngIf="submitted && f.somme.errors">
+              <div *ngIf="f.somme.errors.required">
+               <p>le somme est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="numeropatient">PATIENT:</label>
+              <select formControlName="numeropatient" [ngClass]="{'is-valid':submitted && f.numeropatient.errors}" class="form-control" id="numero" name="numeropatient">
+                <option value="">select patient</option>
+                <option value="Mamadou Ndiaye">Mamadou Ndiaye</option>
+                <option value="Sokhna thiam">Sokhna thiam</option>
+                <option value="Aboubacrine Haidara">Aboubacrine Haidara</option>
+                <option value="Awa Sall">Awa Sall</option>
+              </select>
+              <div *ngIf="submitted && f.numeropatient.errors">
+                <div *ngIf="f.numeropatient.errors.required">
+                 <p>le numero de patient est obligatoire</p>
+                </div>
+              </div>
+              </div>
+<button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+</div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="listesFiches">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SOMME</th>
+            <th scope="col">TYPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listesFiches">
+            <td>{{item.somme}}</td>
+            <td>{{item.type}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

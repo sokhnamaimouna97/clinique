@@ -1,0 +1,112 @@
+<p></p>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading"> Ajouter Patient</div>
+      <div class="panel-boby">
+        <form autocomplete="off" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+          <label for="nom">NOM:</label>
+          <input type="text" formControlName="nom" [ngClass]="{'is-valid':submitted && f.nom.errors}" class="form-control" placeholder="Votre nom" id="nom" name="nom"
+          [value]="f.nom.value"
+          >
+          <div *ngIf="submitted && f.nom.errors">
+            <div *ngIf="f.nom.errors.required">
+             <p>le nom est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="prenom">PRENOM:</label>
+            <input type="text" formControlName="prenom" [ngClass]="{'is-valid':submitted && f.prenom.errors}" class="form-control" placeholder="Votre prenom" id="prenom" name="prenom"
+            [value]="f.prenom.value"
+            >
+            <div *ngIf="submitted && f.prenom.errors">
+              <div *ngIf="f.prenom.errors.required">
+               <p>le prénom est obligatoire</p>
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <div *ngIf="isAdd">
+                <input type="number" formControlName="code" [ngClass]="{'is-valid':submitted && f.code.errors}" class="form-control" placeholder="Votre code" id="code" name="code"
+              [value]="f.code.value"
+              >
+              </div>
+              <div *ngIf="isedit">
+                <input type="number"  readonly formControlName="code" [ngClass]="{'is-valid':submitted && f.code.errors}" class="form-control" placeholder="Votre code" id="code" name="code"
+              [value]="f.code.value"
+              >
+              </div>
+              <div *ngIf="submitted && f.code.errors">
+                <div *ngIf="f.code.errors.required">
+                 <p>le code est obligatoire</p>
+                </div>
+              </div>
+              </div>
+          <div class="form-group">
+          <label for="telephone">TELEPHONE:</label>
+          <input type="text" formControlName="telephone" [ngClass]="{'is-valid':submitted && f.telephone.errors}" class="form-control" placeholder="votre numéro téléphone" id="telephone" name="telephone"
+          [value]="f.telephone.value"
+          >
+          <div *ngIf="submitted && f.telephone.errors">
+            <div *ngIf="f.telephone.errors.required">
+             <p>le telephone est obligatoire</p>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="adresse">ADRESSE:</label>
+          <input type="text" formControlName="adresse" [ngClass]="{'is-valid':submitted && f.adresse.errors}" class="form-control" placeholder="Votre adresse" id="adress" name="adresse"
+          [value]="f.adresse.value"
+          >
+          <div *ngIf="submitted && f.adresse.errors">
+            <div *ngIf="f.adresse.errors.required">
+             <p>l'adresse est obligatoire</p>
+            </div>
+          </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" *ngIf="isAdd" (click)="clickAdd()">ajouter</button>
+          <button type="submit" class="btn btn-primary" *ngIf="isedit" (click)="clickEdit()">editer</button>
+          </form>
+        </div>
+    </div>
+  </div>
+ <div class="col-md-6">
+<div *ngIf="listesPatients">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">NOM</th>
+        <th scope="col">PRÉNOM</th>
+        <th scope="col">CODE</th>
+        <th scope="col">ADRESSE</th>
+        <th scope="col">TELEPHONE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listesPatients">
+        <td>{{item.nom}}</td>
+        <td>{{item.prenom}}</td>
+        <td>{{item.code}}</td>
+        <td>{{item.adresse}}</td>
+        <td>{{item.telephone}}</td>
+        <td>
+          <button class="btn btn-outline-primary" (click)="update(item)">Modifier</button>
+          <button class="btn btn-outline-danger" (click)="delete(item)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+</div>
+</div>
+</div>
+
+
+
+
